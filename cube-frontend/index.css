@@ -1,0 +1,31 @@
+#game {
+  width: 680px;
+  height: 680px;
+  margin: 0px auto;
+  border: 1px solid rgb(5, 0, 0);
+}
+
+.column {
+  float: left;
+}
+
+.left,
+.right {
+  width: 20%;
+}
+
+.middle {
+  width: 60%;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+h2,
+p,
+h3 {
+  text-align: center;
+}

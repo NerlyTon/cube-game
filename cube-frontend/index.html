@@ -4,26 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
-    <div style="position: relative;width:100%;">
-        <div style="position:absolute;left:0px;background-color:rgb(190, 151, 241);width:25%;height:200px;">
-          Login
+    <div class="row">
+        <div class="column left" style="background-color:rgb(128, 212, 223);">
+          <h2>LogIn</h2>
           <form id="userForm">
-              <label>Username:</label>
-              <input type= "text" name="username"/>
-              <input type= "submit"/>
-          </form>
+            <label>Username:</label>
+            <input type= "text" name="username"/>
+            <input type= "submit"/>
+        </form>
         </div>
-    
-        <div id="scoreList" style="position:absolute;right:0px;background-color:rgb(244, 168, 247);width:25%;height:1200px;">
-           
-          Scores
-        
+        <div class="column middle" style="background-color:#bbb;">
+          <h2>Game</h2>
+          <p>Have Fun!</p>
+          <div id="game">
+            <canvas width="100" height="100"></canvas>
+         </div>
         </div>
+        <div class="column right" style="background-color:rgb(128, 212, 223);">
+          <h2>Scores</h2>
+          <div id="scoreList"></div> 
+        </div>
+      </div>
     </div>
     <!-- <script src="game.js"></script> -->
     <script src="user.js"></script>
-    <script src="index.js"></script>
+    <script src= "index.js"></script>
 </body>
 </html>
