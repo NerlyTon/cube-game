@@ -9,9 +9,8 @@ class User {
     // }
 
     displayScoresHTML() {
-        return `<div>
-        <h3> ${this.username} </h3>
-        <li>${this.games.map((game) => `<p id=${game.id}>Score:${game.score} <button class="delete">Delete</button></p>`).join("")}</li>
+        return `<h3> ${this.username} </h3>
+        ${this.games.map((game) => `<div> <p id=${game.id}>Score:${game.score} <button class="delete">Delete</button></p>`).join("")}
         
         </div>`
     }

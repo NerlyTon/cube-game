@@ -63,10 +63,29 @@ function start() {
 
 
     function deleteScore() {
+        scorelist.addEventListener("click", function(e) {
+            if (e.target.className === "delete") {
+                deleteId = e.target.parentElement.id
+                // debugger
+            fetch(`http://localhost:3000/games/${deleteId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                // 'Accept': 'application/json'
+            }
+        })
+        .then(resp => resp.json())
+        .then(game => {
+            console.log(game)
+            location.reload();
+            // getGameScores()
+            // start();
+        })
+        
+    }})}
 
-    }
+    deleteScore();
+
 }
-
-
 
 start();
