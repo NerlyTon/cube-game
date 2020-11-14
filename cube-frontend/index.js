@@ -13,6 +13,22 @@ function start() {
                 scorelist.innerHTML += newUser.displayScoresHTML();
             })})
             scorelist.innerHTML += "</ul>"
+
+        // fetch(`http://localhost:3000/games`)
+        //     .then(res => res.json())
+        //     .then(function (games) {
+        //         scorelist.innerHTML += "<ul>"
+        //     games.forEach((game) => {
+        //         // const info = [game.score, game.user]
+        //         // console.log(info)
+        //         scorelist.innerHTML += `<div id=${game.id}>
+        //         <li><p>Score:${game.score} <button class="delete">Delete</button></p></li>
+                
+        //         </div>`
+                
+                
+        //     })})
+        //     scorelist.innerHTML += "</ul>"
             
     }
             
@@ -47,7 +63,7 @@ function start() {
 
 
     function deleteScore() {
-        
+
     }
 }
 
