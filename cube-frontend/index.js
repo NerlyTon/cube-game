@@ -22,24 +22,33 @@ function start() {
     function createUser() {
     userForm.addEventListener("submit", (e) => {
         e.preventDefault()
+        // debugger
+        const name = e.target.username.value
+        debugger
         // const userObj = getUsername(e.target)
-        //fetch - POST - instatiate a new console using the class, then take advantage of the diplayScoresHTML
+        //fetch - POST - instatiate a new user using the class, then take advantage of the diplayScoresHTML
         fetch(`http://localhost:3000/users`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
-            body: JSON.stringify({username: "nerly"})
+            body: JSON.stringify({username: name})
 
         })
         .then(resp => resp.json())
-        .then(user => console.log(user))
+        .then(user => 
+        scorelist.innerHTML += `<li> ${user} </li>`)
         .catch(err => console.log(err))
-        // scorelist.innerHTML += '<li> name </li>'
+        
     })}
 
     createUser();
+
+
+    function deleteScore() {
+        
+    }
 }
 
 

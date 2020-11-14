@@ -4,9 +4,9 @@ class User {
         this.games = games
     }
 
-    getUsername(form) {
-        return this.username = username.value
-    }
+    // getUsername(form) {
+    //     return this.username = username.value
+    // }
 
     displayScoresHTML() {
         return `<div>
