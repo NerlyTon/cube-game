@@ -4,6 +4,10 @@ class User {
         this.games = games
     }
 
+    getUsername(form) {
+        return this.username = username.value
+    }
+
     displayScoresHTML() {
         return `<div>
         <h3> ${this.username} </h3>
