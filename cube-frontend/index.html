@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="index.css">
+  <style type="text/css">
+    canvas {
+      border: 1px solid black;
+      background: black;
+    }
+  </style>
 </head>
 <body>
     <div class="row">
@@ -19,9 +25,7 @@
         <div class="column middle" style="background-color:#bbb;">
           <h2>Game</h2>
           <p>Have Fun!</p>
-          <div id="game">
-            <canvas width="100" height="100"></canvas>
-         </div>
+          <canvas></canvas>
         </div>
         <div class="column right" style="background-color:rgb(128, 212, 223);">
           <h2>Scores</h2>
@@ -29,7 +33,7 @@
         </div>
       </div>
     </div>
-    <!-- <script src="game.js"></script> -->
+    <script src="game.js"></script>
     <script src="user.js"></script>
     <script src= "index.js"></script>
 </body>

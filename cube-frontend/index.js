@@ -40,9 +40,9 @@ function start() {
         e.preventDefault()
         // debugger
         const name = e.target.username.value
-        debugger
+        // debugger
         // const userObj = getUsername(e.target)
-        //fetch - POST - instatiate a new user using the class, then take advantage of the diplayScoresHTML
+        
         fetch(`http://localhost:3000/users`, {
             method: 'POST',
             headers: {
@@ -54,8 +54,9 @@ function start() {
         })
         .then(resp => resp.json())
         .then(user => 
-        scorelist.innerHTML += `<li> ${user} </li>`)
+        scorelist.innerHTML += newUser.displayScoresHTML())
         .catch(err => console.log(err))
+        // debugger
         
     })}
 
