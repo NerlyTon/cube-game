@@ -1,5 +1,6 @@
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
+// canvas.fillStyle = 'rgba(0, 0, 0, 0.1)'
 
 class Player {
     constructor(dx, dy, x, y, color,) {
@@ -41,20 +42,24 @@ player.draw()
 
 addEventListener("keydown", (e) => {
     if (e.key === "ArrowRight") {
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        ctx.fillStyle = 'rgba(0, 0, 0, 0)'
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
         player.moveRight()
         player.draw()
     } else if(e.key === "ArrowLeft") {
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        ctx.fillStyle = 'rgba(0, 0, 0, 0)'
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
         player.moveLeft()
         player.draw()
     } else if(e.key === "ArrowUp") {
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        ctx.fillStyle = 'rgba(0, 0, 0, 0)'
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
         player.moveUp()
         player.draw()
     }
      else if(e.key === "ArrowDown") {
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        ctx.fillStyle = 'rgba(0, 0, 0, 0)'
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
         player.moveDown()
         player.draw()
     }
@@ -99,7 +104,8 @@ function populateObstacles() {
 let animationId 
 function animate() {
     animationId = requestAnimationFrame(animate)
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.1)'
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
     player.draw()
     obstacles.forEach((obstacle, index) => {
         obstacle.update()
