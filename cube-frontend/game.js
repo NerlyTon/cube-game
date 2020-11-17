@@ -87,30 +87,30 @@ const obstacles = []
 let colorArr = ['Pink', 'Turquoise', 'Plum', "Aquamarine", "White", "Blue", "Purple", "Red" ]
 
 function populateObstacles() {
-    // setInterval(() => {
+    setInterval(() => {
         const dx = Math.random() * canvas.width
         const dy = 0
         const x = 40
         const y = 40
         const color = colorArr[Math.floor(Math.random() * colorArr.length)];
         obstacles.push(new Obstacles(dx, dy, x, y, color))
-    // }, 1000)
+    }, 1000)
 }
 
 function animate() {
     requestAnimationFrame(animate)
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     player.draw()
-    obstacles.forEach(obstacle => {
+    obstacles.forEach((obstacle, index) => {
         obstacle.update()
 
         // const dist = (player.x - obstacle.x, player.y - obstacle.y)
         // console.log(dist)
 
-        if (player.dx < (obstacle.dx + obstacle.x) && player.dx + (player.x > obstacle.dx) &&
+        if (player.dx < (obstacle.dx + obstacle.x) && (player.dx + player.x) > obstacle.dx &&
             player.dy < (obstacle.dy + obstacle.y) &&
-            player.dy + (player.y > obstacle.dy)) {
-            console.log('remove from screen')
+            (player.dy + player.y) > obstacle.dy) {
+            obstacles.splice(index, 1)
         }
     })
 }
