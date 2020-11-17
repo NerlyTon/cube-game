@@ -104,10 +104,12 @@ function animate() {
     obstacles.forEach(obstacle => {
         obstacle.update()
 
-        const dist = Math.hypot(player.x - obstacle.x, player.y - obstacle.y)
-        console.log(dist)
+        // const dist = (player.x - obstacle.x, player.y - obstacle.y)
+        // console.log(dist)
 
-        if (dist < 1) {
+        if (player.dx < (obstacle.dx + obstacle.x) && player.dx + (player.x > obstacle.dx) &&
+            player.dy < (obstacle.dy + obstacle.y) &&
+            player.dy + (player.y > obstacle.dy)) {
             console.log('remove from screen')
         }
     })
