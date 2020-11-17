@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
     def create
         @user = User.create(username: params[:username])
-        render json: @user
+        render json: @user, include: :games
         # @user = User.new(user_params)
         # if @user.save
         #     render json: @user

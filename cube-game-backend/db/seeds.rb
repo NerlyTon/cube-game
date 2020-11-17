@@ -6,11 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# User.destroy_all
-# Game.destroy_all
+
+# Game.all.destroy_all
+# User.all.destroy_all
 
 bob = User.create(username: "bob3000")
-ej = User.create(username: "EJcoder")
+ej = User.create(username: "EJklass")
 tyler = User.create(username: "tylercats")
 
 bob.games.create(score: 20)

@@ -9,7 +9,7 @@ function start() {
                 scorelist.innerHTML += "<ul>"
             users.forEach((user) => {
                 const newUser = new User(user.username, user.games)
-                console.log(newUser)
+                // console.log(newUser)
                 scorelist.innerHTML += newUser.displayScoresHTML();
             })})
             scorelist.innerHTML += "</ul>"
@@ -53,8 +53,11 @@ function start() {
 
         })
         .then(resp => resp.json())
-        .then(user => 
-        scorelist.innerHTML += newUser.displayScoresHTML())
+        .then(user => { 
+            // debugger
+            const newUser = new User(user.username, user.games)
+                console.log(newUser)
+                scorelist.innerHTML += newUser.displayScoresHTML()})
         .catch(err => console.log(err))
         // debugger
         
@@ -65,6 +68,7 @@ function start() {
 
     function deleteScore() {
         scorelist.addEventListener("click", function(e) {
+            e.preventDefault()
             if (e.target.className === "delete") {
                 deleteId = e.target.parentElement.id
                 // debugger
