@@ -25,6 +25,14 @@ class Player {
         this.dx = this.dx - 40
     }
 
+    moveUp() {
+        this.dy = this.dy - 40
+    }
+
+    moveDown() {
+        this.dy = this.dy + 40
+    }
+
 }
 
 const player = new Player(395, 550, 50, 50, 'white')
@@ -40,8 +48,18 @@ addEventListener("keydown", (e) => {
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         player.moveLeft()
         player.draw()
+    } else if(e.key === "ArrowUp") {
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        player.moveUp()
+        player.draw()
+    }
+     else if(e.key === "ArrowDown") {
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        player.moveDown()
+        player.draw()
     }
 })
+    
 
 class Obstacles {
     constructor(dx, dy, x, y, color,) {
@@ -69,10 +87,10 @@ const obstacles = []
 
 function populateObstacles() {
     setInterval(() => {
-        const dx = 100
-        const dy = 200
-        const x = 80
-        const y = 80
+        const dx = Math.random() * canvas.width
+        const dy = 0
+        const x = 40
+        const y = 40
         const color = 'pink'
         obstacles.push(new Obstacles(dx, dy, x, y, color))
     }, 1000)
