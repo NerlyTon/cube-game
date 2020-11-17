@@ -13,9 +13,10 @@
   width: 20px;
 } */
 
-/* .canvas {
-  background-color: rgb(0, 0, 0, 0.1);
-} */
+.canvas,
+.score {
+  position: absolute;
+}
 
 .column {
   float: left;
@@ -41,4 +42,8 @@ h2,
 p,
 h3 {
   text-align: center;
+}
+
+span {
+  color: white;
 }
