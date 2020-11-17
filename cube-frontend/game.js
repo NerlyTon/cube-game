@@ -84,7 +84,7 @@ class Obstacles {
 
 }
 const obstacles = []
-let colorArr = ['Pink', 'Turquoise', 'Plum', "Aquamarine", "White", "Blue", "Purple", "Red" ]
+let colorArr = ['Pink', 'Turquoise', 'Plum', "Aquamarine", "White", "Purple"]
 
 function populateObstacles() {
     setInterval(() => {
@@ -96,13 +96,19 @@ function populateObstacles() {
         obstacles.push(new Obstacles(dx, dy, x, y, color))
     }, 1000)
 }
-
+let animationId 
 function animate() {
-    requestAnimationFrame(animate)
+    animationId = requestAnimationFrame(animate)
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     player.draw()
     obstacles.forEach((obstacle, index) => {
         obstacle.update()
+        // console.log(obstacle)
+        if(obstacle.dy > 560){
+            setTimeout(() => {
+                obstacles.splice(index, 1)
+            }, 0); 
+        }
 
         // const dist = (player.x - obstacle.x, player.y - obstacle.y)
         // console.log(dist)
@@ -110,7 +116,13 @@ function animate() {
         if (player.dx < (obstacle.dx + obstacle.x) && (player.dx + player.x) > obstacle.dx &&
             player.dy < (obstacle.dy + obstacle.y) &&
             (player.dy + player.y) > obstacle.dy) {
-            obstacles.splice(index, 1)
+            setTimeout(() => {
+                obstacles.splice(index, 1)
+            }, 0); 
+            // if(player.color === obstacle.color) {
+                cancelAnimationFrame(animationId)
+            
+            
         }
     })
 }
