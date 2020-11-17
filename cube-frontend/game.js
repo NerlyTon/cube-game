@@ -1,7 +1,7 @@
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
-// canvas.fillStyle = 'rgba(0, 0, 0, 0.1)'
-
+const scoreNum = document.getElementById("scoreNum")
+console.log(scoreNum)
 class Player {
     constructor(dx, dy, x, y, color,) {
         this.x = x
@@ -36,7 +36,7 @@ class Player {
 
 }
 
-const player = new Player(395, 550, 50, 50, 'white')
+const player = new Player(395, 550, 50, 50, 'White')
 player.draw()
 
 
@@ -101,7 +101,8 @@ function populateObstacles() {
         obstacles.push(new Obstacles(dx, dy, x, y, color))
     }, 1000)
 }
-let animationId 
+let animationId
+let score = 0
 function animate() {
     animationId = requestAnimationFrame(animate)
     ctx.fillStyle = 'rgba(0, 0, 0, 0.1)'
@@ -119,16 +120,25 @@ function animate() {
         // const dist = (player.x - obstacle.x, player.y - obstacle.y)
         // console.log(dist)
 
-        if (player.dx < (obstacle.dx + obstacle.x) && (player.dx + player.x) > obstacle.dx &&
+        if (player.color === obstacle.color && player.dx < (obstacle.dx + obstacle.x) && (player.dx + player.x) > obstacle.dx &&
             player.dy < (obstacle.dy + obstacle.y) &&
             (player.dy + player.y) > obstacle.dy) {
+                // debugger
+            score += 1
+            scoreNum.innerHTML = score
             setTimeout(() => {
                 obstacles.splice(index, 1)
             }, 0); 
-            // if(player.color === obstacle.color) {
+            
+        } else if (player.color !== obstacle.color && player.dx < (obstacle.dx + obstacle.x) && (player.dx + player.x) > obstacle.dx &&
+        player.dy < (obstacle.dy + obstacle.y) &&
+        (player.dy + player.y) > obstacle.dy) {
+            // debugger
+            setTimeout(() => {
+                obstacles.splice(index, 1)
+            }, 0); 
+            
                 cancelAnimationFrame(animationId)
-            
-            
         }
     })
 }
