@@ -1,10 +1,5 @@
-
-
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
-
-// console.log(middle)
-
 
 class Player {
     constructor(dx, dy, x, y, color,) {
@@ -13,7 +8,6 @@ class Player {
         this.dx = dx
         this.dy = dy
         this.color = color
-
     }
 
     draw() {
@@ -31,17 +25,10 @@ class Player {
         this.dx = this.dx - 40
     }
 
-    // clear() {
-    //     ctx.clearRect(0, 0, canvas.width, canvas.heigth)
-    //     debugger
-    // }
 }
-
-// const dx = canvas.width / 2
 
 const player = new Player(395, 550, 50, 50, 'white')
 player.draw()
-
 
 
 addEventListener("keydown", (e) => {
@@ -56,8 +43,55 @@ addEventListener("keydown", (e) => {
     }
 })
 
+class Obstacles {
+    constructor(dx, dy, x, y, color,) {
+        this.x = x
+        this.y = y
+        this.dx = dx
+        this.dy = dy
+        this.color = color
+    }
 
+    draw() {
+        ctx.beginPath()
+        ctx.fillStyle = this.color
+        ctx.fillRect(this.dx, this.dy, this.x, this.y)
+        ctx.fill()
+    }
 
+    update() {
+        this.dy = this.dy + 2
+        this.draw()
+    }
+
+}
+const obstacles = []
+
+function populateObstacles() {
+    setInterval(() => {
+        const dx = 100
+        const dy = 200
+        const x = 80
+        const y = 80
+        const color = 'pink'
+        obstacles.push(new Obstacles(dx, dy, x, y, color))
+    }, 1000)
+}
+
+function animate() {
+    requestAnimationFrame(animate)
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    player.draw()
+    obstacles.forEach(obstacle => {
+        obstacle.update()
+    })
+}
+
+populateObstacles();
+animate();
+
+// console.log(middle)
+// const dx = canvas.width / 2
 //     const display = document.querySelector("canvas")
 //     const ctx = display.getContext("2d")
     
