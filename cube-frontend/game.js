@@ -3,6 +3,7 @@ const ctx = canvas.getContext('2d');
 const scoreNum = document.getElementById("scoreNum")
 const startBtn = document.getElementById("startBtn")
 const startBox = document.getElementById("startBox")
+const showScore = document.getElementById("showScore")
 
 class Player {
     constructor(dx, dy, x, y, color,) {
@@ -38,8 +39,44 @@ class Player {
 
 }
 
-const player = new Player(395, 550, 50, 50, 'White')
-// player.draw()
+class Obstacles {
+    constructor(dx, dy, x, y, color,) {
+        this.x = x
+        this.y = y
+        this.dx = dx
+        this.dy = dy
+        this.color = color
+    }
+
+    draw() {
+        ctx.beginPath()
+        ctx.fillStyle = this.color
+        ctx.fillRect(this.dx, this.dy, this.x, this.y)
+        ctx.fill()
+    }
+
+    update() {
+        this.dy = this.dy + 2
+        this.draw()
+    }
+
+}
+
+let player = new Player(395, 550, 50, 50, 'White')
+let obstacles = []
+let colorArr = ['Pink', 'Turquoise', 'Plum', "Aquamarine", "White", "Purple"]
+let animationId
+
+
+function initialize() {
+    player = new Player(395, 550, 50, 50, 'White')
+    obstacles = []
+    colorArr = ['Pink', 'Turquoise', 'Plum', "Aquamarine", "White", "Purple"]
+    animationId
+    score = 0
+    showScore.innerHTML = score
+    scoreNum.innerHTML = score
+}
 
 
 addEventListener("keydown", (e) => {
@@ -66,45 +103,20 @@ addEventListener("keydown", (e) => {
         player.draw()
     }
 })
-    
-
-class Obstacles {
-    constructor(dx, dy, x, y, color,) {
-        this.x = x
-        this.y = y
-        this.dx = dx
-        this.dy = dy
-        this.color = color
-    }
-
-    draw() {
-        ctx.beginPath()
-        ctx.fillStyle = this.color
-        ctx.fillRect(this.dx, this.dy, this.x, this.y)
-        ctx.fill()
-    }
-
-    update() {
-        this.dy = this.dy + 2
-        this.draw()
-    }
-
-}
-const obstacles = []
-let colorArr = ['Pink', 'Turquoise', 'Plum', "Aquamarine", "White", "Purple"]
 
 function populateObstacles() {
-    setInterval(() => {
+    // setInterval(() => {
         const dx = Math.random() * canvas.width
         const dy = 0
         const x = 40
         const y = 40
         const color = colorArr[Math.floor(Math.random() * colorArr.length)];
         obstacles.push(new Obstacles(dx, dy, x, y, color))
-    }, 1000)
+    // }, 1000)
 }
-let animationId
-let score = 0
+
+const obstaclesInterval = setInterval(populateObstacles, 1000)
+
 function animate() {
     animationId = requestAnimationFrame(animate)
     ctx.fillStyle = 'rgba(0, 0, 0, 0.1)'
@@ -119,9 +131,6 @@ function animate() {
             }, 0); 
         }
 
-        // const dist = (player.x - obstacle.x, player.y - obstacle.y)
-        // console.log(dist)
-
         if (player.color === obstacle.color && player.dx < (obstacle.dx + obstacle.x) && (player.dx + player.x) > obstacle.dx &&
             player.dy < (obstacle.dy + obstacle.y) &&
             (player.dy + player.y) > obstacle.dy) {
@@ -133,15 +142,17 @@ function animate() {
             }, 0); 
             
         } else if (player.color !== obstacle.color && player.dx < (obstacle.dx + obstacle.x) && (player.dx + player.x) > obstacle.dx &&
-        player.dy < (obstacle.dy + obstacle.y) &&
-        (player.dy + player.y) > obstacle.dy) {
-            // debugger
-            setTimeout(() => {
-                obstacles.splice(index, 1)
-            }, 0); 
+                player.dy < (obstacle.dy + obstacle.y) &&
+                (player.dy + player.y) > obstacle.dy) {
+                    // debugger
+                    setTimeout(() => {
+                        obstacles.splice(index, 1)
+                    }, 0); 
             
                 cancelAnimationFrame(animationId)
-                startBox.style.display = '' 
+                startBox.style.display = ''
+                showScore.innerHTML = score
+                clearInterval(obstacleInterval)
         }
     })
 }
@@ -153,66 +164,8 @@ function startGame() {
 }
 
 startBtn.addEventListener('click', () => {
+    initialize()
     startGame()
     startBox.style.display = 'none'
 
 })
-
-
-// populateObstacles();
-// animate();
-
-// console.log(middle)
-// const dx = canvas.width / 2
-//     const display = document.querySelector("canvas")
-//     const ctx = display.getContext("2d")
-    
-//     // ctx.fillStyle = "red"
-//     // ctx.beginPath();
-//     ctx.fillRect(100, 130, 200, 200)
-//     // ctx.fill()
-//     // ctx.stroke()
-// 
-     // ctx.fillStyle = "#FFFFFF"
-        // ctx.fillRect(380, 500, 100, 100);
-
-// window.addEventListener("keydown", function(e) {
-//     e.
-// })
-
-// let x = 200;
-// let dx = 1;
-// let y = 200;
-// let dy = 1;
-
-// function animate() {
-//     requestAnimationFrame(animate);
-//     ctx.clearRect(0,0, innerWidth, innerHeight)
-//     ctx.fillStyle = "#FFFFFF"
-//     ctx.fillRect(x, y, 100, 100);
-
-//     if(x > 750 || x < 200) {
-//         dx = -dx;
-
-//     }
-
-//     if(y > 500 || y < 70) {
-//         dy = -dy;
-
-//     }
-//     x += dx;
-//     y += dy;
-// }
-
-// animate();
-
-// window.setInterval(() => {
-//     ctx.clearRect(0, 0, canvas.width, canvas.heigth)
-//     player.moveRight();
-//     player.draw();
-// }, 250)
-
-// console.log(player) 
-
-// setup();
-
