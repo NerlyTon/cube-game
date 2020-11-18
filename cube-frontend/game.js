@@ -1,7 +1,9 @@
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 const scoreNum = document.getElementById("scoreNum")
-console.log(scoreNum)
+const startBtn = document.getElementById("startBtn")
+const startBox = document.getElementById("startBox")
+
 class Player {
     constructor(dx, dy, x, y, color,) {
         this.x = x
@@ -37,7 +39,7 @@ class Player {
 }
 
 const player = new Player(395, 550, 50, 50, 'White')
-player.draw()
+// player.draw()
 
 
 addEventListener("keydown", (e) => {
@@ -139,12 +141,26 @@ function animate() {
             }, 0); 
             
                 cancelAnimationFrame(animationId)
+                startBox.style.display = '' 
         }
     })
 }
 
-populateObstacles();
-animate();
+function startGame() {
+    player.draw()
+    populateObstacles();
+    animate();
+}
+
+startBtn.addEventListener('click', () => {
+    startGame()
+    startBox.style.display = 'none'
+
+})
+
+
+// populateObstacles();
+// animate();
 
 // console.log(middle)
 // const dx = canvas.width / 2
