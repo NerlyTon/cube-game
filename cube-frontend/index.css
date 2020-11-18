@@ -1,21 +1,16 @@
-/* #game {
-  width: 680px;
-  height: 680px;
-  margin: 0px auto;
-  border: 1px solid rgb(5, 0, 0);
-  background-color: rgb(5, 0, 0);
-}
-
-#cube {
-  background-color: rgb(255, 255, 255);
-  height: 20px;
-  position: absolute;
-  width: 20px;
-} */
-
-.canvas,
 .score {
   position: absolute;
+}
+
+.bigbox {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  top: 360px;
+  left: 285px;
+  background: white;
+  text-align: center;
+  padding: 14px;
 }
 
 .column {
@@ -44,6 +39,7 @@ h3 {
   text-align: center;
 }
 
-span {
+#scoreText,
+#scoreNum {
   color: white;
 }
