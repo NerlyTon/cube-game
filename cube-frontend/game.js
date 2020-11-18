@@ -22,19 +22,19 @@ class Player {
     }
 
     moveRight() {
-        this.dx = this.dx + 40
+        this.dx = this.dx + 60
     }
 
     moveLeft() {
-        this.dx = this.dx - 40
+        this.dx = this.dx - 60
     }
 
     moveUp() {
-        this.dy = this.dy - 40
+        this.dy = this.dy - 60
     }
 
     moveDown() {
-        this.dy = this.dy + 40
+        this.dy = this.dy + 60
     }
 
 }
@@ -56,7 +56,7 @@ class Obstacles {
     }
 
     update() {
-        this.dy = this.dy + 2
+        this.dy = this.dy + 5
         this.draw()
     }
 
@@ -79,43 +79,50 @@ function initialize() {
 }
 
 
-addEventListener("keydown", (e) => {
-    if (e.key === "ArrowRight") {
-        ctx.fillStyle = 'rgba(0, 0, 0, 0)'
-        ctx.fillRect(0, 0, canvas.width, canvas.height)
-        player.moveRight()
-        player.draw()
-    } else if(e.key === "ArrowLeft") {
-        ctx.fillStyle = 'rgba(0, 0, 0, 0)'
-        ctx.fillRect(0, 0, canvas.width, canvas.height)
-        player.moveLeft()
-        player.draw()
-    } else if(e.key === "ArrowUp") {
-        ctx.fillStyle = 'rgba(0, 0, 0, 0)'
-        ctx.fillRect(0, 0, canvas.width, canvas.height)
-        player.moveUp()
-        player.draw()
-    }
-     else if(e.key === "ArrowDown") {
-        ctx.fillStyle = 'rgba(0, 0, 0, 0)'
-        ctx.fillRect(0, 0, canvas.width, canvas.height)
-        player.moveDown()
-        player.draw()
-    }
+// addEventListener("keydown", (e) => {
+//     if (e.key === "ArrowRight") {
+//         ctx.fillStyle = 'rgba(0, 0, 0, 0)'
+//         ctx.fillRect(0, 0, canvas.width, canvas.height)
+//         player.moveRight()
+//         player.draw()
+//     } else if(e.key === "ArrowLeft") {
+//         ctx.fillStyle = 'rgba(0, 0, 0, 0)'
+//         ctx.fillRect(0, 0, canvas.width, canvas.height)
+//         player.moveLeft()
+//         player.draw()
+//     } else if(e.key === "ArrowUp") {
+//         ctx.fillStyle = 'rgba(0, 0, 0, 0)'
+//         ctx.fillRect(0, 0, canvas.width, canvas.height)
+//         player.moveUp()
+//         player.draw()
+//     }
+//      else if(e.key === "ArrowDown") {
+//         ctx.fillStyle = 'rgba(0, 0, 0, 0)'
+//         ctx.fillRect(0, 0, canvas.width, canvas.height)
+//         player.moveDown()
+//         player.draw()
+//     }
+// })
+
+addEventListener("mousemove", (e) => {
+    player.dx = e.x  
+    player.dy = e.y
+    // player.x = mouse
+    // console.log(e.x, e.y)
 })
 
 function populateObstacles() {
-    // setInterval(() => {
+    setInterval(() => {
         const dx = Math.random() * canvas.width
         const dy = 0
         const x = 40
         const y = 40
         const color = colorArr[Math.floor(Math.random() * colorArr.length)];
         obstacles.push(new Obstacles(dx, dy, x, y, color))
-    // }, 1000)
+    }, 1000)
 }
 
-const obstaclesInterval = setInterval(populateObstacles, 1000)
+// const obstaclesInterval = setInterval(populateObstacles, 1000)
 
 function animate() {
     animationId = requestAnimationFrame(animate)
@@ -152,7 +159,8 @@ function animate() {
                 cancelAnimationFrame(animationId)
                 startBox.style.display = ''
                 showScore.innerHTML = score
-                clearInterval(obstacleInterval)
+                // clearInterval(obstaclesInterval)
+                // obstaclesInterval
         }
     })
 }
