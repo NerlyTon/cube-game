@@ -7,8 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-# Game.all.destroy_all
-# User.all.destroy_all
+Game.all.destroy_all
+User.all.destroy_all
 
 bob = User.create(username: "bob3000")
 ej = User.create(username: "EJklass")
