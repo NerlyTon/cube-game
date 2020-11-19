@@ -5,6 +5,69 @@ const startBtn = document.getElementById("startBtn")
 const startBox = document.getElementById("startBox")
 const showScore = document.getElementById("showScore")
 
+class Game {
+    constructor(id, score, user_id) {
+        this.id = id
+        this.score = score
+        this.user_id = user_id
+        // User.all.push(this)
+    }
+
+    displayScoresHTML() {
+        return `<p id=${this.id}>Score:${this.score} <button class="delete">Delete</button></p>`
+    }
+}
+
+// function getGameScores(id) {
+//     // debugger
+//     // const userId = document.getElementsByClassName("user")
+//     // debugger
+//     fetch(`http://localhost:3000/users/${id}`)
+//         .then(res => res.json())
+//         .then(function (user) {
+//             scorelist.innerHTML = ""
+//             scorelist.innerHTML += "<ul>"
+//         // users.forEach((user) => {
+//             const newUser = new User(user.id, user.username, user.games)
+//             // console.log(newUser)
+//             scorelist.innerHTML += newUser.displayScoresHTML();
+//         })
+//         scorelist.innerHTML += "</ul>"
+// }
+
+function getScore(user_id, score) {
+    
+    fetch(`http://localhost:3000/games`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({user_id: user_id, score: score})
+
+    })
+    .then(resp => resp.json())
+    .then(game => { 
+        const gameInfo = new Game(game.id, game.score, game.user_id)
+        console.log(gameInfo)
+        // debugger
+
+        // function checkId() {
+        //     if(game.user_id === User.all[0].id) {
+        //         return game.user_id
+        //     }
+        // }
+        // currentUser = User.all.find(checkId)
+        // debugger
+        // console.log(game)
+        // debugger
+    //     currentUser = User.all.find(user)
+       scorelist.innerHTML += gameInfo.displayScoresHTML()})
+    .catch(err => console.log(err))
+    // debugger
+}
+
+
 class Player {
     constructor(dx, dy, x, y, color,) {
         this.x = x
@@ -159,6 +222,9 @@ function animate() {
                 cancelAnimationFrame(animationId)
                 startBox.style.display = ''
                 showScore.innerHTML = score
+                // debugger
+                getScore(User.all[0].id, score)
+                // debugger
                 // clearInterval(obstaclesInterval)
                 // obstaclesInterval
         }
