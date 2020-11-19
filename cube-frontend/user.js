@@ -4,6 +4,7 @@ class User {
         this.username = username
         this.games = games
         User.all.push(this)
+        // debugger
     }
 
     
@@ -11,7 +12,7 @@ class User {
     static all = []
     displayScoresHTML() {
         return `<h3> ${this.username} </h3>
-        ${this.games.map((game) => `<div> <p id=${game.id}>Score:${game.score} <button class="delete">Delete</button></p>`).join("")}
+        ${this.games.map((game) => `<div> <p id="score-${game.id}">Score:${game.score} <button class="delete">Delete</button></p>`).join("")}
         </div>`
     }
 
