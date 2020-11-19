@@ -18,22 +18,7 @@ class Game {
     }
 }
 
-// function getGameScores(id) {
-//     // debugger
-//     // const userId = document.getElementsByClassName("user")
-//     // debugger
-//     fetch(`http://localhost:3000/users/${id}`)
-//         .then(res => res.json())
-//         .then(function (user) {
-//             scorelist.innerHTML = ""
-//             scorelist.innerHTML += "<ul>"
-//         // users.forEach((user) => {
-//             const newUser = new User(user.id, user.username, user.games)
-//             // console.log(newUser)
-//             scorelist.innerHTML += newUser.displayScoresHTML();
-//         })
-//         scorelist.innerHTML += "</ul>"
-// }
+
 
 function getScore(user_id, score) {
     
@@ -142,30 +127,6 @@ function initialize() {
 }
 
 
-// addEventListener("keydown", (e) => {
-//     if (e.key === "ArrowRight") {
-//         ctx.fillStyle = 'rgba(0, 0, 0, 0)'
-//         ctx.fillRect(0, 0, canvas.width, canvas.height)
-//         player.moveRight()
-//         player.draw()
-//     } else if(e.key === "ArrowLeft") {
-//         ctx.fillStyle = 'rgba(0, 0, 0, 0)'
-//         ctx.fillRect(0, 0, canvas.width, canvas.height)
-//         player.moveLeft()
-//         player.draw()
-//     } else if(e.key === "ArrowUp") {
-//         ctx.fillStyle = 'rgba(0, 0, 0, 0)'
-//         ctx.fillRect(0, 0, canvas.width, canvas.height)
-//         player.moveUp()
-//         player.draw()
-//     }
-//      else if(e.key === "ArrowDown") {
-//         ctx.fillStyle = 'rgba(0, 0, 0, 0)'
-//         ctx.fillRect(0, 0, canvas.width, canvas.height)
-//         player.moveDown()
-//         player.draw()
-//     }
-// })
 
 addEventListener("mousemove", (e) => {
     player.dx = e.x  
