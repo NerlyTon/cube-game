@@ -14,7 +14,7 @@ class Game {
     }
 
     displayScoresHTML() {
-        return `<p id=${this.id}>Score:${this.score} <button class="delete">Delete</button></p>`
+        return `<div id="score-${this.id}">Score:${this.score} <button class="delete">Delete</button></div>`
     }
 }
 
