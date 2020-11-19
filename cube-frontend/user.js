@@ -4,7 +4,6 @@ class User {
         this.username = username
         this.games = games
         User.all.push(this)
-        // debugger
     }
 
     
@@ -26,7 +25,6 @@ function hideForm() {
     userForm.style.display = "none"
     columnLeft.innerHTML +=  '<div id="logoutDiv"><h2>LogOut</h2><p><button class="logoutBtn">LogOut</button></p></div>'
     showForm()
-    // debugger
 }
 
 
@@ -34,7 +32,6 @@ function showForm() {
     const logout = document.querySelector(".logoutBtn")
     logout.addEventListener("click", (e) => {
         e.preventDefault()
-        // debugger
     userForm.style.display = "block"
     document.querySelector("#logoutDiv").style.display = "none"
     scorelist.innerHTML = ""

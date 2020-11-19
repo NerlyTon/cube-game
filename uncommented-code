@@ -120,3 +120,40 @@
 //         player.draw()
 //     }
 // })
+
+
+       // debugger
+
+        // function checkId() {
+        //     if(game.user_id === User.all[0].id) {
+        //         return game.user_id
+        //     }
+        // }
+        // currentUser = User.all.find(checkId)
+        // debugger
+        // console.log(game)
+        // debugger
+    //     currentUser = User.all.find(user)
+
+     // const userFilter = User.all.filter
+        // debugger
+        // const userObj = getUsername(e.target)
+
+         //if !userFilter(user) :
+            // debugger
+
+moveRight() {
+        this.dx = this.dx + 60
+    }
+
+    moveLeft() {
+        this.dx = this.dx - 60
+    }
+
+    moveUp() {
+        this.dy = this.dy - 60
+    }
+
+    moveDown() {
+        this.dy = this.dy + 60
+    }

@@ -10,7 +10,6 @@ class Game {
         this.id = id
         this.score = score
         this.user_id = user_id
-        // User.all.push(this)
     }
 
     displayScoresHTML() {
@@ -29,27 +28,14 @@ function getScore(user_id, score) {
             'Accept': 'application/json'
         },
         body: JSON.stringify({user_id: user_id, score: score})
-
     })
     .then(resp => resp.json())
     .then(game => { 
         const gameInfo = new Game(game.id, game.score, game.user_id)
         console.log(gameInfo)
-        // debugger
-
-        // function checkId() {
-        //     if(game.user_id === User.all[0].id) {
-        //         return game.user_id
-        //     }
-        // }
-        // currentUser = User.all.find(checkId)
-        // debugger
-        // console.log(game)
-        // debugger
-    //     currentUser = User.all.find(user)
+ 
        scorelist.innerHTML += gameInfo.displayScoresHTML()})
     .catch(err => console.log(err))
-    // debugger
 }
 
 
@@ -67,22 +53,6 @@ class Player {
         ctx.fillStyle = this.color
         ctx.fillRect(this.dx, this.dy, this.x, this.y)
         ctx.fill()
-    }
-
-    moveRight() {
-        this.dx = this.dx + 60
-    }
-
-    moveLeft() {
-        this.dx = this.dx - 60
-    }
-
-    moveUp() {
-        this.dy = this.dy - 60
-    }
-
-    moveDown() {
-        this.dy = this.dy + 60
     }
 
 }
@@ -131,8 +101,6 @@ function initialize() {
 addEventListener("mousemove", (e) => {
     player.dx = e.x  
     player.dy = e.y
-    // player.x = mouse
-    // console.log(e.x, e.y)
 })
 
 function populateObstacles() {
@@ -155,7 +123,6 @@ function animate() {
     player.draw()
     obstacles.forEach((obstacle, index) => {
         obstacle.update()
-        // console.log(obstacle)
         if(obstacle.dy > 560){
             setTimeout(() => {
                 obstacles.splice(index, 1)
@@ -165,7 +132,6 @@ function animate() {
         if (player.color === obstacle.color && player.dx < (obstacle.dx + obstacle.x) && (player.dx + player.x) > obstacle.dx &&
             player.dy < (obstacle.dy + obstacle.y) &&
             (player.dy + player.y) > obstacle.dy) {
-                // debugger
             score += 1
             scoreNum.innerHTML = score
             setTimeout(() => {
@@ -175,7 +141,6 @@ function animate() {
         } else if (player.color !== obstacle.color && player.dx < (obstacle.dx + obstacle.x) && (player.dx + player.x) > obstacle.dx &&
                 player.dy < (obstacle.dy + obstacle.y) &&
                 (player.dy + player.y) > obstacle.dy) {
-                    // debugger
                     setTimeout(() => {
                         obstacles.splice(index, 1)
                     }, 0); 
@@ -183,7 +148,6 @@ function animate() {
                 cancelAnimationFrame(animationId)
                 startBox.style.display = ''
                 showScore.innerHTML = score
-                // debugger
                 getScore(User.all[0].id, score)
                 // debugger
                 // clearInterval(obstaclesInterval)
