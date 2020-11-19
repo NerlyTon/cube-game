@@ -17,6 +17,10 @@
   float: left;
 }
 
+.logoutBtn {
+  text-align: center;
+}
+
 .left,
 .right {
   width: 20%;
