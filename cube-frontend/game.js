@@ -4,6 +4,7 @@ const scoreNum = document.getElementById("scoreNum")
 const startBtn = document.getElementById("startBtn")
 const startBox = document.getElementById("startBox")
 const showScore = document.getElementById("showScore")
+const api = new ApiFetch()
 
 class Game {
     constructor(id, score, user_id) {
@@ -16,28 +17,6 @@ class Game {
         return `<div id="score-${this.id}">Score:${this.score} <button class="delete">Delete</button></div>`
     }
 }
-
-
-
-function getScore(user_id, score) {
-    
-    fetch(`http://localhost:3000/games`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
-        body: JSON.stringify({user_id: user_id, score: score})
-    })
-    .then(resp => resp.json())
-    .then(game => { 
-        const gameInfo = new Game(game.id, game.score, game.user_id)
-        console.log(gameInfo)
- 
-       scorelist.innerHTML += gameInfo.displayScoresHTML()})
-    .catch(err => console.log(err))
-}
-
 
 class Player {
     constructor(dx, dy, x, y, color,) {
@@ -111,10 +90,10 @@ function populateObstacles() {
         const y = 40
         const color = colorArr[Math.floor(Math.random() * colorArr.length)];
         obstacles.push(new Obstacles(dx, dy, x, y, color))
-    }, 1000)
+    }, 250)
 }
 
-// const obstaclesInterval = setInterval(populateObstacles, 1000)
+// let obstaclesInterval = setInterval(populateObstacles, 1000)
 
 function animate() {
     animationId = requestAnimationFrame(animate)
@@ -148,7 +127,7 @@ function animate() {
                 cancelAnimationFrame(animationId)
                 startBox.style.display = ''
                 showScore.innerHTML = score
-                getScore(User.all[0].id, score)
+                api.getScore(User.all[0].id, score)
                 // debugger
                 // clearInterval(obstaclesInterval)
                 // obstaclesInterval
@@ -160,11 +139,13 @@ function startGame() {
     player.draw()
     populateObstacles();
     animate();
+    // startBtnEvent()
 }
 
-startBtn.addEventListener('click', () => {
+// function startBtnEvent() {
+    startBtn.addEventListener('click', () => {
     initialize()
     startGame()
     startBox.style.display = 'none'
-
-})
+    })
+// }

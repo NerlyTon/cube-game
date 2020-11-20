@@ -1,62 +1,45 @@
+const api1 = new ApiFetch()
+const columnLeft = document.querySelector(".left")
+const bigCanvas = document.querySelector(".canvas")
+const box = document.querySelector(".box")
+const loginMsg = document.querySelector(".message")
+// const scorelist = document.getElementById("scoreList")
+
 function start() {
-    const scorelist = document.getElementById("scoreList")
-    const userForm = document.getElementById("userForm")
-
-    function createUser() {
-    userForm.addEventListener("submit", (e) => {
-        e.preventDefault()
-        const name = e.target.username.value
-        fetch(`http://localhost:3000/users`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({username: name})
-
-        })
-        .then(resp => resp.json())
-        .then(user => { 
-            const newUser = new User(user.id, user.username, user.games)
-                console.log(newUser)
-                scorelist.innerHTML += newUser.displayScoresHTML()})
-        .catch(err => console.log(err))
-       
-        hideForm()   
-    })
+    showForm()
+    api1.createUser();
+    api1.deleteFetch();
 }
 
-createUser();
-    
-    function deleteScore(id) {
-        const dltScore = document.querySelector("#score-"+id)
-        dltScore.remove()
-    }
+function hideForm() {
+    userForm.style.display = "none";
+    columnLeft.innerHTML +=  '<div id="logoutDiv"><h2>LogOut</h2><p><button class="logoutBtn">LogOut</button></p></div>'
+    bigCanvas.style.display="block";
+    box.style.display="block";
+    loginMsg.innerText = "Have Fun!"
+    logoutEvent()
+}
 
-    
-    function deleteFetch() {
-        scorelist.addEventListener("click", function(e) {
-            e.preventDefault()
-            if (e.target.className === "delete") {
-                deleteId = e.target.parentElement.id.split("score-")[1]
-               
-            fetch(`http://localhost:3000/games/${deleteId}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',   
-            }
-            })
-            .then(resp => resp.json())
-            .then(user => {
-                console.log(user)
-                deleteScore(user.id)
-                
-            })
-        }}
-    )}
-    
-deleteFetch()
+
+function showForm() {
+    document.getElementById("userForm").style.display = "block"
+    bigCanvas.style.display="none";
+    box.style.display="none";
+    scorelist.innerHTML = ""
 
 }
 
-start();
+function logoutEvent() {
+    const logout = document.querySelector(".logoutBtn")
+    logout.addEventListener("click", (e) => {
+    e.preventDefault()
+    document.querySelector("#logoutDiv").style.display = "none"
+    showForm()
+    loginMsg.innerText = "Please Login to Play";
+    api1.createUser()
+   })
+    
+}
+
+start()
+
