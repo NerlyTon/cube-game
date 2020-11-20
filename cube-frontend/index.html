@@ -16,7 +16,7 @@
     <div class="row">
         <div class="column left" style="background-color:rgb(128, 212, 223);">
           
-          <form id="userForm">
+        <form id="userForm" class="userForm1">
             <h2 id="LogIn">LogIn</h2>
             <label>Username:</label>
             <input type= "text" name="username" required="required"/>
@@ -24,8 +24,8 @@
         </form>
         </div>
         <div class="column middle" style="background-color:#bbb;">
-          <h2>Game</h2>
-          <p>Have Fun!</p>
+          <h2>Cube Match Game!</h2>
+          <h3 class="message">Please Login to Play</h3>
           <div class="bigbox" id="startBox">
             <div class="box">
               <h4>Score</h4>
@@ -45,9 +45,10 @@
         </div>
       </div>
     </div>
-    
+    <script src= "api.js"></script>
+    <script src= "index.js"></script>
     <script src="user.js"></script>
     <script src="game.js"></script>
-    <script src= "index.js"></script>
+    
 </body>
 </html>
