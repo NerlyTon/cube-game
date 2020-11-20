@@ -16,10 +16,10 @@ Frontend - Javascript
 
 Installation
 
-Fork and Clone this repository
-Bundle Install
-Run Rails S First
-Copy Path of the Index.html File in the Browser
+-Fork and Clone this repository
+-Bundle Install
+-Run Rails S First
+-Copy Path of the Index.html File in the Browser
 
 ---
 
