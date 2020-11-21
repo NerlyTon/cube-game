@@ -4,6 +4,8 @@ const scoreNum = document.getElementById("scoreNum")
 const startBtn = document.getElementById("startBtn")
 const startBox = document.getElementById("startBox")
 const showScore = document.getElementById("showScore")
+const sound = document.getElementById("sound")
+const backgm = document.getElementById("backgm")
 const api = new ApiFetch()
 
 class Game {
@@ -83,17 +85,17 @@ addEventListener("mousemove", (e) => {
 })
 
 function populateObstacles() {
-    setInterval(() => {
+    // setInterval(() => {
         const dx = Math.random() * canvas.width
         const dy = 0
         const x = 40
         const y = 40
         const color = colorArr[Math.floor(Math.random() * colorArr.length)];
         obstacles.push(new Obstacles(dx, dy, x, y, color))
-    }, 250)
+    // }, 250)
 }
 
-// let obstaclesInterval = setInterval(populateObstacles, 1000)
+let obstaclesInterval = setInterval(populateObstacles, 250)
 
 function animate() {
     animationId = requestAnimationFrame(animate)
@@ -107,11 +109,17 @@ function animate() {
                 obstacles.splice(index, 1)
             }, 0); 
         }
-
+        let soundFlag = true
         if (player.color === obstacle.color && player.dx < (obstacle.dx + obstacle.x) && (player.dx + player.x) > obstacle.dx &&
             player.dy < (obstacle.dy + obstacle.y) &&
             (player.dy + player.y) > obstacle.dy) {
-            score += 1
+            score += 5
+            if(soundFlag) {
+                sound.pause()
+                sound.currentTime = 0
+                sound.play()
+                soundFlag = false
+            }
             scoreNum.innerHTML = score
             setTimeout(() => {
                 obstacles.splice(index, 1)
@@ -128,17 +136,20 @@ function animate() {
                 startBox.style.display = ''
                 showScore.innerHTML = score
                 api.getScore(User.all[0].id, score)
-                // debugger
-                // clearInterval(obstaclesInterval)
-                // obstaclesInterval
+                backgm.pause()
+                backgm.currentTime = 0
+                clearInterval(obstaclesInterval)
+                obstaclesInterval = setInterval(populateObstacles, 200)
+                
         }
     })
 }
 
 function startGame() {
     player.draw()
-    populateObstacles();
+    populateObstacles()
     animate();
+    backgm.play()
     // startBtnEvent()
 }
 
