@@ -1,5 +1,5 @@
 const scorelist = document.getElementById("scoreList")
-const userForm = document.getElementById("userForm")
+const userForm = document.querySelector("#userForm")
 // const api2 = new ApiFetch()
 
 
@@ -10,7 +10,8 @@ class ApiFetch {
     }
 
     createUser() {
-    userForm.addEventListener("submit", (e) => {
+        
+        userForm.addEventListener("submit", (e) => {
         e.preventDefault()
         const name = e.target.username.value
         fetch(this.url+"users", {
@@ -36,21 +37,21 @@ class ApiFetch {
 
 
     getScore(user_id, score) {
-    fetch(this.url+'games', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
-        body: JSON.stringify({user_id: user_id, score: score})
-    })
-    .then(resp => resp.json())
-    .then(game => { 
-        const gameInfo = new Game(game.id, game.score, game.user_id)
-        console.log(gameInfo)
- 
-       scorelist.innerHTML += gameInfo.displayScoresHTML()})
-    .catch(err => console.log(err))
+        fetch(this.url+'games', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({user_id: user_id, score: score})
+        })
+        .then(resp => resp.json())
+        .then(game => { 
+            const gameInfo = new Game(game.id, game.score, game.user_id)
+            console.log(gameInfo)
+    
+        scorelist.innerHTML += gameInfo.displayScoresHTML()})
+        .catch(err => console.log(err))
     }
 
     
