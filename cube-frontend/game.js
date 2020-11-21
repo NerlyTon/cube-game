@@ -38,21 +38,7 @@ class Player {
 
 }
 
-class Obstacles {
-    constructor(dx, dy, x, y, color,) {
-        this.x = x
-        this.y = y
-        this.dx = dx
-        this.dy = dy
-        this.color = color
-    }
-
-    draw() {
-        ctx.beginPath()
-        ctx.fillStyle = this.color
-        ctx.fillRect(this.dx, this.dy, this.x, this.y)
-        ctx.fill()
-    }
+class Obstacles extends Player {
 
     update() {
         this.dy = this.dy + 5
