@@ -47,14 +47,14 @@ class Obstacles extends Player {
 
 }
 
-let player = new Player(395, 550, 50, 50, 'White')
+let player = new Player(395, 550, 35, 35, 'White')
 let obstacles = []
 let colorArr = ['Pink', 'Turquoise', 'Plum', "Aquamarine", "White", "Purple"]
 let animationId
 
 
 function initialize() {
-    player = new Player(395, 550, 50, 50, 'White')
+    player = new Player(395, 550, 35, 35, 'White')
     obstacles = []
     colorArr = ['Pink', 'Turquoise', 'Plum', "Aquamarine", "White", "Purple"]
     animationId
@@ -66,8 +66,8 @@ function initialize() {
 
 
 addEventListener("mousemove", (e) => {
-    player.dx = e.x  
-    player.dy = e.y
+    player.dx = e.clientX
+    player.dy = e.clientY
 })
 
 function populateObstacles() {
