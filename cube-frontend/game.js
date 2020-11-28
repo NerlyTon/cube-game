@@ -6,7 +6,7 @@ const startBox = document.getElementById("startBox")
 const showScore = document.getElementById("showScore")
 const sound = document.getElementById("sound")
 const backgm = document.getElementById("backgm")
-const api = new ApiFetch()
+const api2 = new ApiFetch()
 
 class Game {
     constructor(id, score, user_id) {
@@ -57,7 +57,6 @@ function initialize() {
     player = new Player(395, 550, 35, 35, 'White')
     obstacles = []
     colorArr = ['Pink', 'Turquoise', 'Plum', "Aquamarine", "White", "Purple"]
-    animationId
     score = 0
     showScore.innerHTML = score
     scoreNum.innerHTML = score
@@ -66,19 +65,17 @@ function initialize() {
 
 
 addEventListener("mousemove", (e) => {
-    player.dx = e.clientX
-    player.dy = e.clientY
+    player.dx = e.x
+    player.dy = e.y
 })
 
 function populateObstacles() {
-    // setInterval(() => {
         const dx = Math.random() * canvas.width
         const dy = 0
         const x = 40
         const y = 40
         const color = colorArr[Math.floor(Math.random() * colorArr.length)];
         obstacles.push(new Obstacles(dx, dy, x, y, color))
-    // }, 250)
 }
 
 let obstaclesInterval = setInterval(populateObstacles, 250)
@@ -121,7 +118,7 @@ function animate() {
                 cancelAnimationFrame(animationId)
                 startBox.style.display = ''
                 showScore.innerHTML = score
-                api.getScore(User.all[0].id, score)
+                api2.getScore(User.all[0].id, score)
                 backgm.pause()
                 backgm.currentTime = 0
                 clearInterval(obstaclesInterval)
@@ -132,17 +129,16 @@ function animate() {
 }
 
 function startGame() {
-    player.draw()
     populateObstacles()
     animate();
     backgm.play()
-    // startBtnEvent()
+    
 }
 
-// function startBtnEvent() {
-    startBtn.addEventListener('click', () => {
-    initialize()
-    startGame()
-    startBox.style.display = 'none'
-    })
-// }
+
+startBtn.addEventListener('click', () => {
+initialize()
+startGame()
+startBox.style.display = 'none'
+})
+

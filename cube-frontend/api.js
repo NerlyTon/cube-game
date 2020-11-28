@@ -1,6 +1,6 @@
 const scorelist = document.getElementById("scoreList")
 const userForm = document.querySelector("#userForm")
-// const api2 = new ApiFetch()
+
 
 
 class ApiFetch {
@@ -62,7 +62,7 @@ class ApiFetch {
             e.preventDefault()
             if (e.target.className === "delete") {
             const deleteId = e.target.parentElement.id.split("score-")[1]
-               
+             
             fetch(`http://localhost:3000/games/${deleteId}`, {
             method: 'DELETE',
             headers: {
@@ -78,8 +78,6 @@ class ApiFetch {
         }}
     )}
     
-
-
 }
 
 function deleteScore(id) {
