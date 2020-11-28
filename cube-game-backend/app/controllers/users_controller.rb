@@ -13,12 +13,6 @@ class UsersController < ApplicationController
     def create
         @user = User.find_or_create_by(username: params[:username])
         render json: @user, include: :games
-        # @user = User.new(user_params)
-        # if @user.save
-        #     render json: @user
-        # else
-        #     render json:{ errors: @user.errors.full_messages} 
-        # end
     end
 
     
