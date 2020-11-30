@@ -2,6 +2,8 @@ const api1 = new ApiFetch()
 const bigCanvas = document.querySelector(".canvas")
 const box = document.querySelector(".box")
 const loginMsg = document.querySelector(".message")
+// const likebtn = document.querySelector(".like")
+
 
 
 function start() {
@@ -17,6 +19,8 @@ function hideForm() {
     box.style.display="block";
     loginMsg.innerText = "Have Fun!"
     logoutEvent()
+
+    
 }
 
 
@@ -41,6 +45,9 @@ function logoutEvent() {
    })
     
 }
+
+
+
 
 start()
 

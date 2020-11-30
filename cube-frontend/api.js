@@ -1,5 +1,8 @@
 const scorelist = document.getElementById("scoreList")
 const userForm = document.querySelector("#userForm")
+const likebtn = document.querySelector(".like")
+// const likeNum= document.querySelector(".like")
+// let num = 0
 
 
 
@@ -30,7 +33,13 @@ class ApiFetch {
                 scorelist.innerHTML += newUser.displayScoresHTML()})
         .catch(err => console.log(err))
        
-        hideForm()   
+        hideForm()  
+        
+        // document.querySelector(".like").addEventListener("click", (e) => {
+        //     console.log(e.target)
+        //     // num += 1
+    
+        // })
     })
     }
 
@@ -75,6 +84,21 @@ class ApiFetch {
                 deleteScore(user.id)
                 
             })
+
+            
+        }
+        else if (e.target.className === "like") {
+            // let scoreId = e.target.parentElement.id.split("score-")[1]
+            
+            // let scoreId = e.target.parentElement.id.split("score-")[1]
+            // const likebtn = document.querySelector(".like")
+            
+
+            // num ++
+            e.target.innerHTML ++
+            
+            // console.log(e.target) 
+            // debugger
         }}
     )}
     
